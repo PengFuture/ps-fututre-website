@@ -14,10 +14,4 @@ app.use(store)
     .use(ElementPlus)
 
 
-
-
-
-
-
-
 app.mount("#app");
