@@ -3,10 +3,11 @@
         <div class="forms-container">
             <div class="sign-signup">
                 <!--登录-->
-                <el-form label-width="100px" class="loginForm sign-in-form" :model="loginUser" :rules="rules"
+                <el-form label-width="100px" class="loginForm sign-in-form" :model="loginUser" :rules="loginRules"
                          ref="loginForm">
                     <el-form-item label="用户名" prop="username">
-                        <el-input type="username" placeholder="请输入用户名" v-model="loginUser.username" autocomplete="off"></el-input>
+                        <el-input type="username" placeholder="请输入用户名" v-model="loginUser.username"
+                                  autocomplete="off"></el-input>
                     </el-form-item>
                     <el-form-item label="密码" prop="password">
                         <el-input type="password" placeholder="请输入密码" v-model="loginUser.password" autocomplete="off"
@@ -16,32 +17,26 @@
                         <el-button class="submit-btn" type="primary" @click="handleLogin('loginForm')">登录</el-button>
                     </el-form-item>
                 </el-form>
-                <!-- 找回密码 -->
-                <div class="tip-area">
-                    <p>忘记密码 ？<a>立即找回</a></p>
-                </div>
-
-                <el-form ref="registerForm" :model="registerUser" :rules="registerRules" label-width="100px" class="registerForm sign-up-form">
-                    <el-form-item label="用户名" prop="name">
-                        <el-input v-model="registerUser.username" placeholder="Enter UserName..."></el-input>
+                <!--注册-->
+                <el-form ref="registerForm" :model="registerUser" :rules="registerRules" label-width="100px"
+                         class="registerForm sign-up-form">
+                    <el-form-item label="注册账户" prop="username">
+                        <el-input v-model="registerUser.username" placeholder="请输入账户"></el-input>
                     </el-form-item>
                     <el-form-item label="邮箱" prop="email">
-                        <el-input v-model="registerUser.email" placeholder="Enter Email..."></el-input>
+                        <el-input v-model="registerUser.email" placeholder="请输入邮箱"></el-input>
                     </el-form-item>
-                    <el-form-item label="密码" prop="password">
+                    <el-form-item label="密码" prop="passwordOne">
                         <el-input v-model="registerUser.passwordOne" type="password" placeholder="请输入密码"></el-input>
                     </el-form-item>
-                    <el-form-item label="确认密码" prop="password2">
+                    <el-form-item label="确认密码" prop="passwordTwo">
                         <el-input v-model="registerUser.passwordTwo" type="password" placeholder="请确认密码"></el-input>
                     </el-form-item>
                     <el-form-item>
-                        <el-button @click="handleRegister('registerForm')" type="primary" class="submit-btn">注册</el-button>
+                        <el-button @click="handleRegister('registerForm')" type="primary" class="submit-btn">注册
+                        </el-button>
                     </el-form-item>
                 </el-form>
-                <!-- 找回密码 -->
-                <div class="tip-area">
-                    <p>忘记密码 ？<a>立即找回</a></p>
-                </div>
             </div>
         </div>
 
@@ -71,7 +66,7 @@
 <script>
 
 import {ref, getCurrentInstance} from "vue";
-import {loginUser, rules, registerUser} from "../../utils/loginValidators.ts";
+import {loginUser, loginRules, registerUser, registerRules} from "../../utils/loginValidators.ts";
 
 export default {
     name: "login",
@@ -93,9 +88,10 @@ export default {
         return {
             signUpMode,
             loginUser,
-            rules,
+            loginRules,
             handleLogin,
-            registerUser
+            registerUser,
+            registerRules
         }
     }
 }
